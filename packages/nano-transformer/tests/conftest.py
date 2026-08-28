@@ -1,10 +1,25 @@
 """Pytest fixtures and configuration for Nano-Transformer tests."""
 
 import pytest
-import torch
 
-from nano_transformer.data import CharTokenizer, get_tiny_shakespeare_data
-from nano_transformer.model import GPT, GPTConfig
+try:
+    import torch
+    TORCH_AVAILABLE = True
+except ImportError:
+    torch = None  # type: ignore[assignment]
+    TORCH_AVAILABLE = False
+
+
+def pytest_ignore_collect(collection_path, path, config):  # type: ignore[no-untyped-def]
+    """Skip test collection if optional [torch] dependency is not installed."""
+    if not TORCH_AVAILABLE:
+        return True
+    return False
+
+
+if TORCH_AVAILABLE:
+    from nano_transformer.data import CharTokenizer, get_tiny_shakespeare_data
+    from nano_transformer.model import GPT, GPTConfig
 
 
 @pytest.fixture
