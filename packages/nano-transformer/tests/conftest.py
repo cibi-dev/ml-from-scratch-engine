@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Any
 import pytest
 
 try:
@@ -12,7 +13,7 @@ except ImportError:
     TORCH_AVAILABLE = False
 
 
-def pytest_ignore_collect(collection_path, path, config):  # type: ignore[no-untyped-def]
+def pytest_ignore_collect(collection_path: Any, config: Any) -> bool:
     """Skip test collection if optional [torch] dependency is not installed."""
     if not TORCH_AVAILABLE:
         return True
