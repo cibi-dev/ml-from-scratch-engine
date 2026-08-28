@@ -198,7 +198,7 @@ def test_guardrails_json_repair_and_validation() -> None:
 # ==============================================================================
 
 def test_nano_transformer_forward_and_generation() -> None:
-    import torch
+    torch = pytest.importorskip("torch", reason="extra opcional [torch]")
     from nano_transformer.model import GPT, GPTConfig
     from nano_transformer.generate import generate
 
