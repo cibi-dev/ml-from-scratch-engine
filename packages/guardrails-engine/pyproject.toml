@@ -1,0 +1,40 @@
+[project]
+name = "guardrails-engine"
+version = "0.1.0"
+description = "Self-healing JSON extraction & validation engine for LLM outputs"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+    "pydantic>=2.7,<3",
+    "httpx>=0.27,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "respx>=0.22",
+    "mypy>=1.10",
+    "pytest-asyncio>=0.24",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = false
+warn_return_any = false
+disallow_untyped_defs = false
+check_untyped_defs = true
+exclude = [
+    '^tests/',
+    '^benchmarks/',
+    '^examples/',
+    '^\.venv/',
+]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=guardrails --cov-fail-under=90"

@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  ml-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cibi-dev/ml-from-scratch-engine:latest
+    container_name: ml-from-scratch-engine
+    restart: "no"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output:rw
+    command: ["demo"]
