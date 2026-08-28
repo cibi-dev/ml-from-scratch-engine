@@ -1,7 +1,6 @@
-"""Tests for training loop, micro-batch overfitting, gradient flow, and learning rate scheduler."""
-
 import pytest
-import torch
+
+torch = pytest.importorskip("torch", reason="extra opcional [torch]")
 
 from nano_transformer.data import CharTokenizer, create_data_splits, get_batch
 from nano_transformer.model import GPT, GPTConfig

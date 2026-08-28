@@ -13,13 +13,6 @@ except ImportError:
     TORCH_AVAILABLE = False
 
 
-def pytest_ignore_collect(collection_path: Any, config: Any) -> bool:
-    """Skip test collection if optional [torch] dependency is not installed."""
-    if not TORCH_AVAILABLE:
-        return True
-    return False
-
-
 if TORCH_AVAILABLE:
     from nano_transformer.data import CharTokenizer, get_tiny_shakespeare_data
     from nano_transformer.model import GPT, GPTConfig

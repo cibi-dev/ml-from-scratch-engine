@@ -1,7 +1,6 @@
-"""Security and robustness tests: token bounds checking, sequence truncation, NaN guards, loop prevention."""
-
 import pytest
-import torch
+
+torch = pytest.importorskip("torch", reason="extra opcional [torch]")
 
 from nano_transformer.data import CharTokenizer, create_data_splits
 from nano_transformer.generate import generate

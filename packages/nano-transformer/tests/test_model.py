@@ -1,8 +1,7 @@
-"""Tests for model architecture, shape propagation, weight tying, and parameter counts."""
-
 import math
 import pytest
-import torch
+
+torch = pytest.importorskip("torch", reason="extra opcional [torch]")
 
 from nano_transformer.model import GPT, Block, CausalSelfAttention, GPTConfig, MLP
 

@@ -1,8 +1,7 @@
-"""Tests for Causal Self-Attention mechanism, causal mask non-leakage, and numerical stability."""
-
 import math
 import pytest
-import torch
+
+torch = pytest.importorskip("torch", reason="extra opcional [torch]")
 import torch.nn.functional as F
 
 from nano_transformer.model import GPT, CausalSelfAttention, GPTConfig
